@@ -1,0 +1,56 @@
+.hidden {
+   display: none;
+}
+body {
+   font-family: monospace;
+   text-align: center;
+   background-color: pink;
+   color: white;
+}
+
+header > h1 {
+   font-size: 52px;
+   margin: 10% 0 0 0;
+}
+
+#score-container {
+   display: flex;
+   justify-content: center;
+}
+
+.container {
+   background-color: pink;
+   display: flex;
+   flex-direction: column;
+   margin: 5%;
+}
+
+.container > span {
+   font-size: 24px;
+   margin-bottom: 1rem;
+}
+
+#select {
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.buttons {
+   display: flex;
+   justify-content: center;
+   gap: 2rem;
+   margin-top: 1.5rem;
+}
+
+.btn-style {
+   width: 130px;
+   height: 40px;
+   color: #fff;
+   border-radius: 24px;
+   padding: 10px 25px;
+   background: lightblue;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   position: relative;
+   outline: none;
+}

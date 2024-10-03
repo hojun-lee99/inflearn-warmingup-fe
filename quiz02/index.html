@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Rock Scissors Paper!</title>
+      <link href="styles.css" rel="stylesheet" type="text/css" />
+   </head>
+   <body>
+      <header>
+         <h1>가위 바위 보</h1>
+      </header>
+      <main>
+         <div id="score-container">
+            <div class="container player">
+               <span>플레이어</span>
+               <span id="player-score">0</span>
+            </div>
+            <div class="container computer">
+               <span>컴퓨터</span>
+               <span id="computer-score">0</span>
+            </div>
+         </div>
+         <div class="play-container">
+            <div class="number-of-times">
+               <div id="select">선택하기</div>
+               <div>남은 횟수: <span id="remain-numbers">10</span></div>
+            </div>
+            <div class="buttons">
+               <input
+                  type="button"
+                  class="button btn-style"
+                  id="0"
+                  value="가위"
+               />
+               <input
+                  type="button"
+                  class="button btn-style"
+                  id="1"
+                  value="바위"
+               />
+               <input
+                  type="button"
+                  class="button btn-style"
+                  id="2"
+                  value="보"
+               />
+            </div>
+            <div id="game-result"></div>
+         </div>
+         <div class="result-container hidden">
+            <div class="result"></div>
+            <input type="button" class="btn-style retry-btn" value="다시하기" />
+         </div>
+      </main>
+      <script src="./js/script.js"></script>
+      <script src="./js/retry.js"></script>
+   </body>
+</html>
