@@ -1,36 +1,62 @@
 'use strict';
 
-const quiz = {
-   '2 + 2?': 4,
-   '4 + 2?': 6,
-   '10 + 11?': 21,
-};
+const answerBtn = document.querySelectorAll('.answer');
+const nextBtn = document.querySelectorAll('.btn');
+const main = document.querySelector('main');
 
-let quizIndex = 0;
-const key = [];
-const value = [];
+let index = 0;
+const correct = ['4', '정답이 없습니다', '246'];
 
-for (let property in quiz) {
-   key.push(property);
-   value.push(quiz[property]);
+function clickAnswerBtn(e) {
+   const answer = e.target.innerText;
+   const nextBtn = e.target.parentElement.lastElementChild;
+   const answerBtns = document.querySelectorAll(`#question-${index}>.answer`);
+   // * 클릭한 버튼을 제외한 버튼 요소
+   const filteredAnswerBtns = Array.from(answerBtns).filter(
+      (item) => item !== e.target,
+   );
+
+   if (correct[index] === answer) {
+      e.target.style.background = 'green';
+      main.style.background = 'green';
+      filteredAnswerBtns.forEach(
+         (element) => (element.style.background = 'red'),
+      );
+   } else {
+      e.target.style.background = 'red';
+      main.style.background = 'red';
+      filteredAnswerBtns.forEach(
+         (element) => (element.style.background = 'green'),
+      );
+   }
+
+   nextBtn.classList.remove('hidden');
 }
 
-function loadWindow() {
-   const question = document.querySelector('.question');
-   question.textContent = key[quizIndex];
+function clickNextBtn(e) {
+   if (index >= 2) {
+      index = 0;
+   } else {
+      index++;
+   }
+   const nextQuestion = document.querySelector(`#question-${index}`);
+   const buttons = document.querySelectorAll(`#question-${index}>.answer`);
+   const currentQuestion = e.target.parentElement;
+
+   currentQuestion.classList.add('hidden');
+   nextQuestion.classList.remove('hidden');
+   e.target.classList.add('hidden');
+   main.style.background = 'gray';
+   buttons.forEach((element) => {
+      element.style.background = 'gray';
+   });
 }
 
-window.addEventListener('load', loadWindow);
+// * 버튼 클릭 이벤트 추가
+answerBtn.forEach((item) => {
+   item.addEventListener('click', clickAnswerBtn);
+});
 
-// 필요하면 사용할 것들
-// const quizSize = quiz.legth;
-
-// const main = document.querySelector('main');
-
-// let item = document.createElement('p');
-// item.textContent = 'test';
-// main.appendChild(item);
-
-// for (let prop in quiz) {
-//    console.log(prop, quiz[prop]);
-// }
+nextBtn.forEach((item) => {
+   item.addEventListener('click', clickNextBtn);
+});

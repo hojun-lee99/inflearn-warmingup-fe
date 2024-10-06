@@ -8,7 +8,25 @@
    </head>
    <body>
       <main>
-         <span class="question"></span>
+         <div class="question-box" id="question-0">
+            <span class="question">2 + 2?</span>
+            <button class="answer">4</button>
+            <button class="answer">22</button>
+            <button class="btn hidden">Next</button>
+         </div>
+         <div class="question-box hidden" id="question-1">
+            <span class="question">4 + 22?</span>
+            <div class="answer">14</div>
+            <div class="answer">22</div>
+            <div class="answer">정답이 없습니다</div>
+            <div class="btn hidden">Next</div>
+         </div>
+         <div class="question-box hidden" id="question-2">
+            <span class="question">123 + 123?</span>
+            <div class="answer">123</div>
+            <div class="answer">246</div>
+            <div class="btn hidden" id="restart">Restart</div>
+         </div>
       </main>
       <script src="./script.js"></script>
    </body>
