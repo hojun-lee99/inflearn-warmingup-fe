@@ -1,4 +1,14 @@
+.hidden {
+   display: none;
+}
+
 body {
+   font-family: 'Courier New', Courier, monospace;
+   font-weight: 500;
+   font-size: 20px;
+}
+
+main {
    background-color: gray;
    width: 100vw;
    height: 100vh;
@@ -9,10 +19,11 @@ body {
    align-items: center;
 }
 
-main {
+.question-box {
    margin-left: 20px;
    width: 80%;
-   height: 25%;
+   height: auto;
+   padding-bottom: 1rem;
    background-color: white;
    border-radius: 5px;
 }
@@ -20,4 +31,27 @@ main {
 .question {
    display: block;
    margin: 15px;
+}
+
+.answer {
+   display: inline-block;
+   background-color: gray;
+   color: white;
+   margin-left: 4%;
+   margin-bottom: 2%;
+   padding: 3px 20%;
+   border-radius: 5px;
+   border: none;
+}
+
+.btn {
+   background-color: gray;
+   color: white;
+   font-size: 24px;
+   font-weight: 800;
+   text-align: center;
+   margin: 1.5rem 40%;
+   padding: 3px;
+   border-radius: 5px;
+   border: none;
 }
