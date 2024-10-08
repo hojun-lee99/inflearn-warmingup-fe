@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>book list</title>
+      <link rel="stylesheet" href="./css/main.css" />
+   </head>
+   <body>
+      <header>
+         <h1 id="title">책</h1>
+      </header>
+      <main>
+         <form id="book-info-form">
+            <label for="book-name">책 이름</label>
+            <input type="text" id="book-name" />
+            <label for="book-auth">책 저자</label>
+            <input type="text" id="book-auth" />
+            <button>제출</button>
+         </form>
+         <ul id="book-list">
+            <div class="book-info">
+               <div class="name">책 이름</div>
+               <div class="auth">책 저자</div>
+            </div>
+         </ul>
+      </main>
+   </body>
+   <script src="./addList.js"></script>
+</html>
