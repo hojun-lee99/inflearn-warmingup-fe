@@ -10,17 +10,14 @@
          <h1 id="title">책</h1>
       </header>
       <main>
-         <label for="book-title">책 이름</label>
-         <input type="text" id="book-title" />
-         <label for="book-author">책 저자</label>
-         <input type="text" id="book-author" />
-         <button id="add-btn">제출</button>
-         <div class="book-list-container">
-            <div id="book-list-header">
-               <span>책 이름</span>
-               <span>책 저자</span>
-            </div>
-         </div>
+         <form id="book-info-form">
+            <label for="book-name">책 이름</label>
+            <input type="text" id="book-name" />
+            <label for="book-auth">책 저자</label>
+            <input type="text" id="book-auth" />
+            <button>제출</button>
+         </form>
+         <ul id="book-list"></ul>
       </main>
    </body>
 </html>
