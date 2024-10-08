@@ -1,0 +1,58 @@
+body {
+  margin: 0 2rem;
+}
+
+h1 {
+  font-weight: 200;
+}
+
+#book-info-form {
+  display: flex;
+  flex-direction: column;
+}
+#book-info-form label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 3px;
+}
+#book-info-form input {
+  padding: 0.4rem 5px;
+  border: 0.5px solid;
+  border-radius: 2px;
+}
+#book-info-form input:focus {
+  outline: 1px solid skyblue;
+}
+#book-info-form button {
+  margin-top: 1rem;
+  background-color: white;
+  border: 0.5px solid;
+  border-radius: 2px;
+  padding: 0.5rem;
+}
+
+#book-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 3rem;
+}
+#book-list div {
+  font-weight: 800;
+}
+#book-list .book-info {
+  display: flex;
+  gap: 40%;
+  border-bottom: 0.5px solid;
+}
+#book-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#book-list button {
+  background-color: white;
+  border: none;
+  border-bottom: 0.5px solid;
+  margin-bottom: 5px;
+}/*# sourceMappingURL=main.css.map */

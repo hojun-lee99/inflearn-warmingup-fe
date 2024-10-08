@@ -4,6 +4,7 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>book list</title>
+      <link rel="stylesheet" href="./css/main.css" />
    </head>
    <body>
       <header>
@@ -17,7 +18,13 @@
             <input type="text" id="book-auth" />
             <button>제출</button>
          </form>
-         <ul id="book-list"></ul>
+         <ul id="book-list">
+            <div class="book-info">
+               <div class="name">책 이름</div>
+               <div class="auth">책 저자</div>
+            </div>
+         </ul>
       </main>
    </body>
+   <script src="./addList.js"></script>
 </html>
