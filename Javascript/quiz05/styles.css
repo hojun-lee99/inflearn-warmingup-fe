@@ -142,6 +142,34 @@ header > h1 {
   padding: 0.5rem;
 }
 
+#repo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#repo-container > a {
+  text-decoration-line: none;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+#repo-container > div {
+  display: flex;
+}
+
+#stars-container {
+  background-color: var(--main-color);
+}
+
+#watchers-container {
+  background-color: cadetblue;
+}
+
+#forks-container {
+  background-color: lightcoral;
+}
+
 footer {
   background-color: #f5f5f5;
   font-size: 12px;

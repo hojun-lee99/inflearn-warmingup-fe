@@ -1,47 +1,71 @@
 /*
- todo 최근 레포 목록 추가
+  todo 최근 레포 목록 추가
  */
 import GITHUB_TOKEN from './key.js';
 import { Octokit } from 'https://esm.sh/@octokit/core';
 const searchInput = document.getElementById('search-input');
 
-function changedSearch(event) {
+//^ 검색 이벤트 함수
+async function changedSearch(event) {
   const searchName = event.target.value;
-  console.log(searchName);
+  // check isBlank
   if (!searchName) {
-    return hideContainer();
+    return hideInfoContainer();
   }
 
-  const userInfo = getUserInfo(searchName);
-  userInfo.then((userInfo) => {
-    if (!userInfo) {
-      drawError();
-    } else {
-      //업데이트를 위해 회원정보에 있는 요소들 전부 제거
-      const userInfoCtn = document.getElementById('user-info-container');
-      removeAllChild(userInfoCtn);
-      drawUserInfo(userInfo.data);
-    }
-  });
+  const { responseInfo, responseRepo } = await getUserInfo(searchName);
+  console.log(responseInfo, responseRepo);
+
+  if (!responseInfo) {
+    drawError();
+  } else {
+    // 업데이트를 위해 회원정보에 있는 요소들 전부 제거
+    const userInfoCtn = document.getElementById('user-info-container');
+    removeAllChild(userInfoCtn);
+    drawUserInfo(responseInfo.data);
+  }
+
+  if (!responseRepo) {
+    console.log('레포 정보가 없습니다!');
+  } else {
+    console.log(responseRepo);
+    const latestRepoCtn = document.getElementById('latest-repo-container');
+    removeAllChild(latestRepoCtn);
+    drawLatestRepo(responseRepo.data);
+  }
 }
 
+//^ 유저 정보 GET
 async function getUserInfo(userName) {
   try {
     const octokit = new Octokit({ auth: `${GITHUB_TOKEN}` });
 
-    const response = await octokit.request('GET /users/{username}', {
+    const responseInfo = await octokit.request('GET /users/{username}', {
       username: userName,
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
       },
     });
 
-    return await response;
+    const responseRepo = await octokit.request(
+      'GET /users/{username}/repos?per_page={repos_count}&sort={repos_sort}',
+      {
+        username: userName,
+        repos_count: 5,
+        repos_sort: 'created: asc',
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+      },
+    );
+
+    return { responseInfo, responseRepo };
   } catch (error) {
-    return null;
+    return { responseInfo: null, responseRepo: null };
   }
 }
 
+//^ 검색 에러 박스 출력 함수
 function drawError() {
   // errorbox가 이미 출려 되어있으면 중복으로 출력하지 않기
   const alreadyExist = document.querySelector('.error-box');
@@ -57,8 +81,9 @@ function drawError() {
   main.prepend(errorBox);
 }
 
+//^ 사용자 정보 출력 함수
 function drawUserInfo(data) {
-  // errorbox가 있을시 숨기기
+  // errorbox가 있을시 제거
   const errorbox = document.querySelector('.error-box');
   if (errorbox) {
     errorbox.remove();
@@ -95,8 +120,6 @@ function drawUserInfo(data) {
   userURL.target = '_blank';
   userURL.innerText = 'View Profile';
   imgProfileCtn.appendChild(userURL);
-
-  userInfoCtn.appendChild(imgProfileCtn);
 
   const informationsCtn = document.createElement('div');
   informationsCtn.id = 'informations-container';
@@ -161,12 +184,16 @@ function drawUserInfo(data) {
   bioInfoCtn.appendChild(locationInfo);
   bioInfoCtn.appendChild(createdAtInfo);
 
+  userInfoCtn.appendChild(imgProfileCtn);
   informationsCtn.appendChild(reposEtcInfoCtn);
+
+  //* 데이터를 담은 컨테이너들을 userInfo컨테이너에 추가
   informationsCtn.appendChild(bioInfoCtn);
   userInfoCtn.appendChild(informationsCtn);
 }
 
-function hideContainer() {
+//^ userInfo컨테이너 숨기기
+function hideInfoContainer() {
   const userInfoCtn = document.getElementById('user-info-container');
   const latestRepoCtn = document.getElementById('latest-repo-container');
 
@@ -177,7 +204,48 @@ function hideContainer() {
   latestRepoCtn.classList.add('hidden');
 }
 
-// 자식 요소 전부 제거
+function drawLatestRepo(datas) {
+  const latestRepoCtn = document.getElementById('latest-repo-container');
+  latestRepoCtn.classList.remove('hidden');
+  datas.forEach((data) => {
+    const { name, html_url, stargazers_count, watchers_count, forks_count } =
+      data;
+    const repoCtn = document.createElement('div');
+    repoCtn.classList.add('container');
+    repoCtn.id = 'repo-container';
+
+    const aRepo = document.createElement('a');
+    aRepo.href = html_url;
+    aRepo.innerText = name;
+    aRepo.target = '_blank';
+
+    // 레포 정보 container
+    const infosCtn = document.createElement('div');
+    infosCtn.id = 'informations-container';
+    const starsCtn = document.createElement('div');
+    starsCtn.classList.add('etc-info');
+    starsCtn.id = 'stars-container';
+    starsCtn.innerText = `Stars: ${stargazers_count}`;
+    const watchersCtn = document.createElement('div');
+    watchersCtn.classList.add('etc-info');
+    watchersCtn.id = 'watchers-container';
+    watchersCtn.innerText = `Watchers: ${watchers_count}`;
+    const forksCtn = document.createElement('div');
+    forksCtn.classList.add('etc-info');
+    forksCtn.id = 'forks-container';
+    forksCtn.innerText = `forks: ${forks_count}`;
+
+    infosCtn.appendChild(starsCtn);
+    infosCtn.appendChild(watchersCtn);
+    infosCtn.appendChild(forksCtn);
+
+    repoCtn.appendChild(aRepo);
+    repoCtn.appendChild(infosCtn);
+    latestRepoCtn.appendChild(repoCtn);
+  });
+}
+
+//^ 자식 요소 전부 제거
 function removeAllChild(element) {
   const childNodes = element.querySelectorAll('*');
   childNodes.forEach((node) => node.remove());
