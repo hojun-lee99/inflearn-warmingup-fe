@@ -1,0 +1,179 @@
+:root {
+  --main-color: #4285f4;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+header {
+  background-color: var(--main-color);
+  color: white;
+}
+
+header > h1 {
+  font-size: 18px;
+  font-weight: 200;
+  margin: 0;
+  padding: 1rem;
+}
+
+.container {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+#search-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#search-header {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+#search-detail {
+  color: gray;
+  font-weight: 200;
+  margin-bottom: 0.5rem;
+}
+
+#search-input {
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+#search-input:focus {
+  border: 1px solid var(--main-color);
+  outline: 1px solid var(--main-color);
+}
+
+.error-box {
+  border: none;
+  border-radius: 2px;
+  background-color: orangered;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+#user-info-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#img-profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#img-profile-container > img {
+  width: 200px;
+  height: 200px;
+}
+
+#img-profile-container > a {
+  width: 200px;
+  background-color: var(--main-color);
+  color: white;
+  text-align: center;
+  text-decoration-line: none;
+  border-radius: 5px;
+}
+
+#informations-container {
+  padding: 1rem;
+}
+
+#repos-etc-info-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.etc-info {
+  border-radius: 5px;
+  color: white;
+  padding: 0.2rem;
+  margin-left: 5px;
+  display: flex;
+}
+
+#repos-info {
+  background-color: var(--main-color);
+}
+
+#gists-info {
+  background-color: lightcoral;
+}
+
+#followers-info {
+  background-color: lightgray;
+}
+
+#followings-info {
+  background-color: limegreen;
+}
+
+#bio-info-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+.bio-info {
+  margin: 0;
+  border-bottom: 1px solid gray;
+  padding: 0.5rem;
+}
+
+#repo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#repo-container > a {
+  text-decoration-line: none;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+#repo-container > div {
+  display: flex;
+}
+
+#stars-container {
+  background-color: var(--main-color);
+}
+
+#watchers-container {
+  background-color: cadetblue;
+}
+
+#forks-container {
+  background-color: lightcoral;
+}
+
+footer {
+  background-color: #f5f5f5;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  padding: 1rem;
+}
