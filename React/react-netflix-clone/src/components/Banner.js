@@ -24,8 +24,6 @@ const Banner = () => {
     const { data: movieDetail } = await instance.get(`movie/${movieId}`, {
       params: { append_to_response: 'videos' },
     });
-    console.log(movieDetail);
-    console.log(Array.isArray(movieDetail.videos.results));
     setMovie(movieDetail);
   };
 
